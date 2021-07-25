@@ -16,7 +16,7 @@ class Interpolator
     virtual double value(double x) const = 0;
 
     private:
-    map<double, double> DataPoints;
+    map<double, double> mCoordinates;
 };
 
 class LinearInterpolator : public Interpolator

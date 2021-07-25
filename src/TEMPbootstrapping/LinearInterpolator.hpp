@@ -13,5 +13,5 @@ class LinearInterpolator
     double value(double x);
 
     private:
-    map<double, double> DataPoints;
+    map<double, double> mCoordinates;
 };

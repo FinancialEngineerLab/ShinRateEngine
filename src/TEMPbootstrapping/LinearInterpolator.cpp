@@ -7,39 +7,39 @@ using namespace std;
 
 void LinearInterpolator::add(double x, double y)
 {
-    if(DataPoints.count(x) != 0)
+    if(mCoordinates.count(x) != 0)
     {
         map<double, double>::iterator it =
-        DataPoints.find(x);
+        mCoordinates.find(x);
         it->second = y;
     }
-    DataPoints.insert(pair<double, double>(x,y));
+    mCoordinates.insert(pair<double, double>(x,y));
 }
 
 double LinearInterpolator::value(double x)
 {
-    if(DataPoints.empty())
+    if(mCoordinates.empty())
     {
         cout << "No Prior Data Entered. " << endl;
         system("pause");
         exit(EXIT_FAILURE);
     }
-    if (DataPoints.begin()->first > x)
+    if (mCoordinates.begin()->first > x)
     {
         cout << "Input var is outside points" << endl;
         cout << "closest data points : " << endl;
-        return DataPoints.begin()->second;
+        return mCoordinates.begin()->second;
     }
     map<double, double>::iterator it;
 
-    it = DataPoints.find(x);
-    if (it != DataPoints.end())
+    it = mCoordinates.find(x);
+    if (it != mCoordinates.end())
     {
         return it->second;
     }
     else
     {
-        for (it = DataPoints.begin(); it != DataPoints.end();++it)
+        for (it = mCoordinates.begin(); it != mCoordinates.end();++it)
         {
             if (it->first >= x)
             {
@@ -52,7 +52,7 @@ double LinearInterpolator::value(double x)
             }
         }
     }
-    map<double, double>::iterator it = DataPoints.end();
+    map<double, double>::iterator it = mCoordinates.end();
     --it;
 
     cout << "Input var is outside points" << endl;
